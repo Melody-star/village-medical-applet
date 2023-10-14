@@ -1,0 +1,11 @@
+/* component/FMScrollGroupsControl/FMScrollGroupsControl.wxss */
+.fm-control-groups {
+	width: 84rpx;
+	position: absolute;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.3) 4rpx 4rpx 6rpx;
+	border-radius: 4rpx;
+	top: 540rpx;
+	right: 40rpx;
+	z-index: 10;
+}

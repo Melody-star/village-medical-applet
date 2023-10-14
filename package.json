@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "goeasy": "^2.6.4",
+    "ooomap-simulate-navi": "^1.0.226"
+  }
+}

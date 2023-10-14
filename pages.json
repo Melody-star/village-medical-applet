@@ -1,0 +1,258 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "乡村e疗"
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/news/news",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#F5F5F5"
+			}
+
+		}, {
+			"path": "pages/info/info",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/addinfo/addinfo",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/drugremind/drugremind",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/adddrugremind/adddrugremind",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/info/privateChat",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/index/ask/selectdoctor",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/news/detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/chageUserInfo/chageUserInfo",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/info/prescription",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/myregister/myregister",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/mypresciption/mypresciption",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/index/record/record",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/help/help",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,{
+            "path" : "pages/index/recordDetail/recordDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"subPackages": [{
+		"root": "page_register",
+		"pages": [{
+			"path": "affirm/affirm",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "department/department",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "doctor/doctor",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "selecthospital/selecthospital",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "success/success",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}]
+	}, {
+		"root": "page_map",
+		"pages": [{
+			"path": "map/map",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}    ,{
+                    "path" : "2dmap/2dmap",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "custom",
+		"usingComponents": {
+			"van-search": "/wxcomponents/@vant/weapp/search/index",
+			"van-tab": "/wxcomponents/@vant/weapp/tab/index",
+			"van-tabs": "/wxcomponents/@vant/weapp/tabs/index",
+			"van-grid": "/wxcomponents/@vant/weapp/grid/index",
+			"van-grid-item": "/wxcomponents/@vant/weapp/grid-item/index",
+			"van-divider": "/wxcomponents/@vant/weapp/divider/index",
+			"van-tree-select": "/wxcomponents/@vant/weapp/tree-select/index",
+			"van-icon": "/wxcomponents/@vant/weapp/icon/index",
+			"van-field": "/wxcomponents/@vant/weapp/field/index",
+			"van-notice-bar": "/wxcomponents/@vant/weapp/notice-bar/index",
+			"van-dialog": "/wxcomponents/@vant/weapp/dialog/index",
+			"van-slider": "/wxcomponents/@vant/weapp/slider/index",
+			"van-nav-bar": "/wxcomponents/@vant/weapp/nav-bar/index",
+			"van-cell": "/wxcomponents/@vant/weapp/cell/index",
+			"van-cell-group": "/wxcomponents/@vant/weapp/cell-group/index",
+			"van-collapse": "/wxcomponents/@vant/weapp/collapse/index",
+			"van-collapse-item": "/wxcomponents/@vant/weapp/collapse-item/index",
+			"van-sticky": "/wxcomponents/@vant/weapp/sticky/index",
+			"van-datetime-picker": "/wxcomponents/@vant/weapp/datetime-picker/index",
+			"van-popup": "/wxcomponents/@vant/weapp/popup/index",
+			"van-switch": "/wxcomponents/@vant/weapp/switch/index",
+			"van-radio": "/wxcomponents/@vant/weapp/radio/index",
+			"van-radio-group": "/wxcomponents/@vant/weapp/radio-group/index",
+			"van-empty": "/wxcomponents/@vant/weapp/empty/index",
+			"van-overlay": "/wxcomponents/@vant/weapp/overlay/index",
+			"van-tabbar": "/wxcomponents/@vant/weapp/tabbar/index",
+			"van-tabbar-item": "/wxcomponents/@vant/weapp/tabbar-item/index",
+			"van-icon": "/wxcomponents/@vant/weapp/icon/index",
+			"floors-control": "/wxcomponents/FloorsControl/index",
+			"viewmode-control": "/wxcomponents/ViewModeControl/index"
+		}
+	},
+	"tabBar": {
+		"borderStyle": "black",
+		"selectedColor": "#4B97F8",
+		"color": "#515151",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/home.png",
+			"selectedIconPath": "static/home2.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/info/info",
+			"iconPath": "static/info.png",
+			"selectedIconPath": "static/info2.png",
+			"text": "消息"
+		}, {
+			"pagePath": "pages/news/news",
+			"iconPath": "static/zixun1.png",
+			"selectedIconPath": "static/zixun2.png",
+			"text": "科普"
+		}, {
+			"pagePath": "pages/my/my",
+			"iconPath": "static/my.png",
+			"selectedIconPath": "static/my2.png",
+			"text": "我的"
+		}]
+	},
+	"uniIdRouter": {}
+}

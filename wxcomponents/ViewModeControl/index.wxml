@@ -1,0 +1,12 @@
+<!-- component/FMViewModeControl/FMViewModeControl.wxml -->
+<!-- <view class="fm-control-mode">
+    <cover-view style="cursor: pointer;" bindtap="changeMode">
+        <cover-image src="{{btnUrl}}{{viewMode}}.png" style="width: 76rpx; height: 76rpx;margin:4rpx auto;"></cover-image>
+    </cover-view>
+</view> -->
+
+<view class="fm-control-mode">
+    <view style="cursor: pointer;" bindtap="changeMode">
+        <image src="{{btnUrl}}{{viewMode}}.png" style="width: 76rpx; height: 76rpx;margin:4rpx auto;"></image>
+    </view>
+</view>
