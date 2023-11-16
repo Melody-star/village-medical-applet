@@ -12,13 +12,8 @@
 				<text>未知</text>
 			</view>
 		</view>
-		<view class="header_select">
-			<view :class="show === 1 ? 'select' : 'noselect'" @click="change(1)">健康信息</view>
-			<view :class="show === 2 ? 'select' : 'noselect'" @click="change(2)">就医记录</view>
-			<view :class="show === 3 ? 'select' : 'noselect'" @click="change(3)">体检报告</view>
-		</view>
 
-		<view class="health_info" v-if="show === 1">
+		<view class="health_info">
 			<view class="base">
 				<view class="base_box">
 					<view class="base_title">基础信息</view>
@@ -130,16 +125,6 @@
 
 			</view>
 		</view>
-
-		<view style="margin-top: 150px;" v-if="show === 2">
-			<van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png"
-				description="暂无记录" />
-		</view>
-
-		<view style="margin-top: 0px;" v-if="show === 3">
-			<van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png"
-				description="暂无记录" />
-		</view>
 	</view>
 </template>
 
@@ -205,7 +190,7 @@
 	.header {
 		background-image: url('https://s3-us-east-1.ossfiles.com/demoas/%E7%94%BB%E6%9D%BF%201.png');
 		background-size: 750rpx 453rpx;
-		height: 453rpx;
+		height: 330rpx;
 	}
 
 	.hander_info {
@@ -271,7 +256,7 @@
 	}
 
 	.base {
-		margin-top: 50px;
+		margin-top: 30px;
 		width: 680rpx;
 	}
 

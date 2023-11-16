@@ -8,7 +8,7 @@
 				<van-tab title="推荐">
 					<div class="list">
 						<view @click='toDetail(item,true)' v-for="(item,i) in newsList" :key="i">
-							<news :title="item.scienceTitile" :time="item.createTime" :img="item.scienceImg">
+							<news :title="item.title" :time="item.publish_date" :img="item.images">
 							</news>
 						</view>
 					</div>
@@ -16,7 +16,7 @@
 				<van-tab title="热门">
 					<div class="list">
 						<view @click='toDetail(item,true)' v-for="(item,i) in hotList" :key="i">
-							<news :title="item.scienceTitile" :time="item.createTime" :img="item.scienceImg">
+							<news :title="item.title" :time="item.publish_date" :img="item.images">
 							</news>
 						</view>
 					</div>
@@ -24,7 +24,7 @@
 				<van-tab title="精华">
 					<div class="list">
 						<view @click='toDetail(item,true)' v-for="(item,i) in jinhuaList" :key="i">
-							<news :title="item.scienceTitile" :time="item.createTime" :img="item.scienceImg">
+							<news :title="item.title" :time="item.publish_date" :img="item.images">
 							</news>
 						</view>
 					</div>
@@ -72,10 +72,9 @@
 			this.top = menuButtonInfo.top + ((menuButtonInfo.height - 20) / 2)
 
 			getAllScience().then((res) => {
-				console.log(res);
 				this.newsList = res.data
-				this.hotList = this.newsList.filter(obj => obj.scienceType == "3");
-				this.jinhuaList = this.newsList.filter(obj => obj.scienceType == "4");
+				this.hotList = this.newsList.filter(obj => obj.category == "热门");
+				this.jinhuaList = this.newsList.filter(obj => obj.category == "精华");
 			})
 		},
 

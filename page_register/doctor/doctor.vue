@@ -10,13 +10,13 @@
 				<view v-for="(item1,j) in doctorInfo" :key="j" class="list">
 					<view style="display: flex;">
 						<image style="border-radius: 99px;width: 97rpx;height: 97rpx;margin-left: 58rpx;"
-							:src="item1.doctorAvatar">
+							:src="item1.avatar">
 						</image>
 						<view style="display: flex;flex-direction: column;margin-left: 40rpx;">
-							<text style="font-size: 30rem;">{{item1.doctorName}}</text>
-							<text style="font-size: 18rem;">{{item1.doctorTitle}}</text>
+							<text style="font-size: 30rem;">{{item1.username}}</text>
+							<text style="font-size: 18rem;">{{item1.title}}</text>
 							<text style="font-size: 18rem;color: #808080;width: 370rpx;">擅长：
-								{{item1.doctorIntroduction}}</text>
+								{{item1.expertise}}</text>
 						</view>
 					</view>
 					<view class="yuyue_btn" @click="goTo(item1)">
@@ -35,7 +35,7 @@
 	const counter = useCounterStore();
 
 	import {
-		getDoctor
+		getDoctorBySecondaryDepartmentIdAndDay
 	} from '@/api/api.js'
 
 	import sizeUtil from '@/utils/sizeUtil.js';
@@ -49,15 +49,16 @@
 			}
 		},
 		onLoad(option) {
-			console.log("================");
-			console.log(option.id);
+			// console.log("================");
+			// console.log(option.id);
 
 			let id = option.id;
-			if (option.id == 25) {
-				id = 1
-			}
+			// if (option.id == 25) {
+			// 	id = 1
+			// }
 
 			const today = new Date(); // 获取当前日期
+
 			const days = []; // 定义数组存储日期
 
 			// 将今天的日期加入数组
@@ -72,19 +73,24 @@
 			this.date = days
 			this.selectDate = days[0]
 
-			getDoctor(id).then((res) => {
-				console.log(res);
+			getDoctorBySecondaryDepartmentIdAndDay({
+				secondary_department_id: id,
+				date: this.selectDate
+			}).then((res) => {
 				this.doctorInfo = res.data
 			})
 		},
 		methods: {
 			goTo(item) {
+
 				console.log(item);
-				counter.registerInfo['doctorName'] = item.doctorName
-				counter.registerInfo['doctorTitle'] = item.doctorTitle
-				counter.registerInfo['doctorIntroduction'] = item.doctorIntroduction
-				counter.registerInfo['doctorId'] = item.accountId
-				counter.registerInfo['doctorAvatar'] = item.doctorAvatar
+
+				counter.registerInfo['doctorName'] = item.username
+				counter.registerInfo['doctorTitle'] = item.title
+				counter.registerInfo['doctorIntroduction'] = item.expertise
+				counter.registerInfo['doctorId'] = item.user_id
+				counter.registerInfo['doctorAvatar'] = item.avatar
+				counter.registerInfo['registrationFee'] = item.registration_fee
 				counter.registerInfo['date'] = this.selectDate
 
 				uni.navigateTo({
@@ -92,9 +98,10 @@
 				})
 			},
 			formatDate(date) {
+				const year = date.getFullYear()
 				const month = date.getMonth() + 1;
 				const day = date.getDate();
-				return `${month}/${day}`;
+				return `${year}-${month}-${day}`;
 			},
 			onClick(event) {
 				this.selectDate = event.detail.name

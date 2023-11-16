@@ -5,11 +5,11 @@
 			<view class="title" :style='"padding-top:" + top + "px;"'>个人信息</view>
 			<view class="hander_info">
 				<view>
-					<image :src="userinfo.patientAvatar ? userinfo.patientAvatar:userinfo.doctorAvatar"></image>
+					<image :src="userinfo.avatar"></image>
 				</view>
 				<view class="hander_info_right">
-					<text>{{userinfo.patientName ? userinfo.patientName : userinfo.doctorName}}</text>
-					<text>{{userinfo.patientPhone}}</text>
+					<text>{{userinfo.username}}</text>
+					<text>{{userinfo.phone}}</text>
 				</view>
 			</view>
 		</view>

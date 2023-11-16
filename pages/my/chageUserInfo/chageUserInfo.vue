@@ -6,7 +6,7 @@
 
 	<van-cell-group inset>
 		<van-cell title="头像">
-			<image :src="userInfo.patientAvatar" slot="" @click="chooseImage()"></image>
+			<image :src="userInfo.avatar" slot="" @click="chooseImage()"></image>
 		</van-cell>
 		<van-cell @click="open" title="昵称" :value="name" />
 	</van-cell-group>
@@ -56,9 +56,8 @@
 				key: 'userinfo',
 				success: function(res) {
 					that.userInfo = res.data
-
-					that.name = that.userInfo.patientName
-					that.phone = that.userInfo.patientPhone
+					that.name = that.userInfo.username
+					that.phone = that.userInfo.phone
 				}
 			})
 		},

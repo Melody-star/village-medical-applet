@@ -8,17 +8,17 @@
 		<view v-for="(item,i) in doctorList" :key="i">
 			<view class="flex-row items-center page space-x-34" style="margin-top: 20px;margin-left: 30px;"
 				@click="goTo(item)">
-				<image class="image" :src="item.img" />
+				<image class="image" :src="item.avatar" />
 				<view class="flex-col">
 					<view class="flex-row items-baseline space-x-18">
-						<text class="text">{{item.doctorName}}</text>
+						<text class="text">{{item.username}}</text>
 						<text class="font_1">{{item.title}}</text>
 					</view>
 					<view class="flex-row items-center group space-x-22">
 						<text class="font_1 text_2">{{item.hospital}}</text>
 						<text class="font_1 text_3">{{item.department}}</text>
 					</view>
-					<text class="text_4">擅长：{{item.advantage}}</text>
+					<text class="text_4">擅长：{{item.expertise}}</text>
 				</view>
 			</view>
 			<van-divider />
@@ -28,7 +28,7 @@
 
 <script>
 	import {
-		getDoctorList
+		getUserInfoByType
 	} from '@/api/api.js'
 
 	import sizeUtil from '../../../utils/sizeUtil'
@@ -41,7 +41,9 @@
 			}
 		},
 		onLoad() {
-			getDoctorList().then((res) => {
+			getUserInfoByType({
+				type: 1
+			}).then((res) => {
 				console.log(res);
 				this.doctorList = res.data
 			})
@@ -56,19 +58,19 @@
 			goTo(value) {
 				console.log(value);
 				uni.navigateTo({
-					url: '/pages/info/privateChat?to=' + value.accountId
+					url: '/pages/info/privateChat?to=' + value.user_id
 				});
 			},
 			connectGoEasy() {
 				let that = this
 				this.goEasy.connect({
 					// 用户id
-					id: that.userInfo.accountId,
+					id: that.userInfo.user_id,
 
 					// 用户信息
 					data: {
-						name: that.userInfo.patientName,
-						avatar: that.userInfo.patientAvatar
+						name: that.userInfo.username,
+						avatar: that.userInfo.avatar
 					},
 					onSuccess: () => {
 						console.log('GoEasy connect successfully.')

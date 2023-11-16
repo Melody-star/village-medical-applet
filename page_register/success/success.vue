@@ -17,6 +17,7 @@
 
 		<view class="box">
 			<text>就诊凭条（凭以下凭条进行就诊）</text>
+			<!-- <text>{{value.medical_code}}</text> -->
 			<image src="https://s3-us-east-1.ossfiles.com/demoas/2d.png"></image>
 		</view>
 
@@ -51,7 +52,7 @@
 
 			<view style="font-size: 28rem;">
 				<text>医院单号</text>
-				<text>12387284</text>
+				<text>{{value?.medical_order_number}}</text>
 			</view>
 		</view>
 	</view>
@@ -71,11 +72,16 @@
 		extends: sizeUtil,
 		data() {
 			return {
-				info: {}
+				info: {},
+				value: null
 			}
 		},
-		onLoad() {
+		onLoad(e) {
+			this.value = JSON.parse(decodeURIComponent(e.result))
 			this.info = counter.registerInfo
+
+			console.log("this.value", this.value);
+			console.log("this.info", this.info);
 		},
 		methods: {
 			goHome() {

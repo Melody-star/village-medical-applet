@@ -48,7 +48,7 @@
 			uni.getStorage({
 				key: 'userinfo',
 				success: function(res) {
-					getMedicalInfo(res.data.accountId).then((res1) => {
+					getMedicalInfo(res.data.user_id).then((res1) => {
 						if (res1.data != null) {
 							uni.showToast({
 								title: "您已添加过信息！",
@@ -95,11 +95,11 @@
 					key: 'userinfo',
 					success(userinfo) {
 						addMedicalInfo({
-							medicalAddress: that.address,
-							medicalIdcard: that.id,
-							medicalName: that.name,
-							medicalPhone: that.phone,
-							userId: userinfo.data.accountId
+							id_card: that.id,
+							name: that.name,
+							userUserId: userinfo.data.user_id,
+							phone: that.phone,
+							address: that.address
 						}).then((res) => {
 							console.log(res);
 							if (res.message == "成功") {

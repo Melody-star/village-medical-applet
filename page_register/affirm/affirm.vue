@@ -45,28 +45,28 @@
 		<view class="box2" style="margin-top: 10px;">
 			<view style="display: flex;font-size: 28rem;justify-content: space-between">
 				<text>就诊人</text>
-				<text style="color: rgba(128, 128, 128, 1);">{{guahaoInfo.medicalName}}</text>
+				<text style="color: rgba(128, 128, 128, 1);">{{guahaoInfo.name}}</text>
 			</view>
 
 			<van-divider />
 
 			<view style="display: flex;font-size: 28rem;justify-content: space-between">
 				<text>就诊卡</text>
-				<text style="color: rgba(128, 128, 128, 1);">3242123</text>
+				<text style="color: rgba(128, 128, 128, 1);">{{guahaoInfo.id_card}}</text>
 			</view>
 
 			<van-divider />
 
 			<view style="display: flex;font-size: 28rem;justify-content: space-between">
 				<text>身份证</text>
-				<text style="color: rgba(128, 128, 128, 1);">{{guahaoInfo.medicalIdcard}}</text>
+				<text style="color: rgba(128, 128, 128, 1);">{{guahaoInfo.medical_card_number}}</text>
 			</view>
 
 			<van-divider />
 
 			<view style="display: flex;font-size: 28rem;justify-content: space-between">
 				<text>挂号费</text>
-				<text style="color: rgba(128, 128, 128, 1);">10元</text>
+				<text style="color: rgba(128, 128, 128, 1);">{{info.registrationFee}}</text>
 			</view>
 		</view>
 	</view>
@@ -114,14 +114,12 @@
 				key: 'userinfo',
 				success: (e) => {
 					that.userInfo = e.data
-
-					getMedicalInfo(that.userInfo.accountId).then((res) => {
+					getMedicalInfo(that.userInfo.user_id).then((res) => {
 						if (res.data == null) {
 							this.msgType = "info"
 							this.$refs.alertDialog.open()
 						} else {
 							that.guahaoInfo = res.data
-							console.log(that.guahaoInfo);
 						}
 					})
 				}
@@ -152,24 +150,31 @@
 				uni.requestSubscribeMessage({
 					tmplIds: ['NsWDcXJNVaJ8U2UxYZCuzFpJkurt61434lAtLg-bFRk'],
 					success(res) {
+
+						let currentDate = new Date();
+						let formattedDate = currentDate.getFullYear() + '-' +
+							('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' +
+							('0' + currentDate.getDate()).slice(-2);
+
 						addGuahao({
-							accountId: that.userInfo.accountId,
+							userId: that.userInfo.user_id,
+							doctorId: that.info.doctorId,
+							appointmentTime: formattedDate + " " + that.time,
+							registrationFee: that.info.registrationFee,
 							hospitalName: that.info.hospitalName,
-							departmentPosition: that.info.departmentPlace,
-							visitTime: that.time,
-							doctorId: that.info.accountId
+							secondaryDepartment: that.info.department
 						}).then((res) => {
-							if (res.message == '成功') {
-
+							if (res.status == 200) {
 								counter.registerInfo['time'] = that.time
-								counter.registerInfo['name'] = that.guahaoInfo.medicalName
-
+								counter.registerInfo['name'] = that.guahaoInfo.name
 								uni.showToast({
 									title: '预约成功',
 									icon: 'success',
 									success() {
 										uni.navigateTo({
-											url: '/page_register/success/success'
+											url: '/page_register/success/success?result=' +
+												encodeURIComponent(JSON.stringify(res
+													.data))
 										})
 									}
 								})

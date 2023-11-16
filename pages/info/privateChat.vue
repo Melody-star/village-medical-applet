@@ -251,13 +251,13 @@
 			uni.getStorage({
 				key: 'userinfo',
 				success(res) {
-					that.userType = res.data.userType
-					console.log("that.userType", that.userType);
+					that.userType = res.data.user_type
+					console.log("that.userType", that.user_type);
 					that.currentUser = {
-						avatar: res.data.patientAvatar ? res.data.patientAvatar : res.data.doctorAvatar,
-						id: res.data.accountId.toString(),
-						name: res.data.patientName ? res.data.patientName : res.data.doctorName,
-						zhichen: res.data.doctorTitle ? "" : res.data.doctorTitle
+						avatar: res.data.avatar,
+						id: res.data.user_id.toString(),
+						name: res.data.username,
+						zhichen: res.data.title
 					}
 
 					console.log("发送人信息", that.currentUser);
@@ -267,13 +267,10 @@
 			//聊天对象
 			let id = options.to;
 			getUserInfoById(id).then((res) => {
-
-				console.log(res);
-
 				this.friend = {
-					id: res.accountId.toString(),
-					name: res.doctorName === undefined ? res.patientName : res.doctorName,
-					avatar: res.doctorAvatar === undefined ? res.patientAvatar : res.doctorAvatar
+					id: res.data.user_id.toString(),
+					name: res.data.username,
+					avatar: res.data.avatar
 				}
 
 				console.log("接收人信息", this.friend);
@@ -479,9 +476,6 @@
 			},
 			sendTextMessage() {
 				if (this.text.trim() !== '') {
-
-					console.log(this.to);
-
 					let body = this.text;
 					if (this.text.length >= 50) {
 						body = this.text.substring(0, 30) + '...';
@@ -489,9 +483,7 @@
 					this.goEasy.im.createTextMessage({
 						text: this.text,
 						to: this.to,
-
 						qita: "asdas",
-
 						notification: {
 							title: this.currentUser.name + '发来一段文字',
 							body: body

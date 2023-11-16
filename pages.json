@@ -124,17 +124,22 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/index/recordDetail/recordDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/login/account-login",
+			"style": {
+				"navigationBarTitleText": "账号密码登录",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/index/recordDetail/recordDetail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"subPackages": [{
 		"root": "page_register",
 		"pages": [{
@@ -181,16 +186,14 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
-		}    ,{
-                    "path" : "2dmap/2dmap",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-            ]
+		}, {
+			"path": "2dmap/2dmap",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}]
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -224,6 +227,7 @@
 			"van-tabbar": "/wxcomponents/@vant/weapp/tabbar/index",
 			"van-tabbar-item": "/wxcomponents/@vant/weapp/tabbar-item/index",
 			"van-icon": "/wxcomponents/@vant/weapp/icon/index",
+			"van-button": "/wxcomponents/@vant/weapp/button/index",
 			"floors-control": "/wxcomponents/FloorsControl/index",
 			"viewmode-control": "/wxcomponents/ViewModeControl/index"
 		}

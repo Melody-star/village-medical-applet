@@ -10,13 +10,13 @@
 
 		<view class="footer">
 			<view class="footer_box" v-for="(item,i) in hospitalList" :key="i" @click="goTo(item)">
-				<image style="width: 151rpx;height: 79px;border-radius: 5px;" :src="item.contactsPhone"></image>
+				<image style="width: 151rpx;height: 79px;border-radius: 5px;" :src="item.hospital_image"></image>
 				<view style="margin-left: 25rpx;">
-					<view style="font-size: 28rem;">{{item.hospitalName}}</view>
-					<view style="font-size: 18rem;width: 487rpx;margin-top: 13px;">{{item.contactsName}}</view>
+					<view style="font-size: 28rem;">{{item.hospital_name}}</view>
+					<view style="font-size: 18rem;width: 487rpx;margin-top: 13px;">{{item.hospital_address}}</view>
 					<view
 						style="font-size: 18rem;color: rgba(128, 128, 128, 1);display: flex;margin-top: 10px;margin-bottom: 4.5px;">
-						<view>{{item.signKey}}</view>
+						<view>{{item.hospital_level}}</view>
 					</view>
 					<!-- 					<view>
 						<image style="width: 40rpx;height: 26rpx;" src="../../static/sanjia.png"></image>
@@ -48,18 +48,17 @@
 		},
 		onLoad() {
 			getHospitalsByCityName(counter.city).then((res) => {
-				console.log(res);
 				this.hospitalList = res.data
 			})
 		},
 		methods: {
 			goTo(item) {
 				counter.registerInfo = {}
-				counter.registerInfo['hospitalName'] = item.hospitalName
+				counter.registerInfo['hospitalName'] = item.hospital_name
 
 				uni.navigateTo({
-					url: "/page_register/department/department?name=" + item.hospitalName + "&img=" + item
-						.contactsPhone + "&id=" + item.id
+					url: "/page_register/department/department?name=" + item.hospital_name + "&img=" + item
+						.hospital_image + "&id=" + item.hospital_id
 				});
 			}
 		}

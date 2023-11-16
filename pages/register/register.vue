@@ -10,6 +10,10 @@
 		</view>
 		<view class="box2">
 			<view>
+				<text>账号</text>
+				<input @input="inputAccount" placeholder="请输入账号" />
+			</view>
+			<view style="margin-top: 16px;">
 				<text>用户名</text>
 				<input @input="inputUserName" placeholder="请输入用户名" />
 			</view>
@@ -17,7 +21,7 @@
 				<text>密码</text>
 				<input type="password" @input="inputPassWord" placeholder="请输入密码" />
 			</view>
-			<view>
+			<view style="margin-top: 16px;">
 				<text>确认密码</text>
 				<input type="password" @input="inputPassWord2" placeholder="请再次输入密码" />
 			</view>
@@ -41,17 +45,18 @@
 			return {
 				username: null,
 				password: null,
-				password2: null
+				password2: null,
+				account: null
 			}
 		},
 		methods: {
 			toLogin() {
 				uni.navigateTo({
-					url: '/pages/login/login'
+					url: '/pages/login/account-login'
 				})
 			},
 			register() {
-				if (!this.username || !this.password) {
+				if (!this.username || !this.password || !this.account) {
 					this.showAlert("请输入用户名和密码")
 					return
 				}
@@ -62,13 +67,13 @@
 				}
 
 				addRegister({
-					accountName: this.username,
-					accountPassword: this.password,
-					accountUsertype: 2,
+					account: this.account,
+					password: this.password,
+					username: this.username,
+					user_type: 0,
 					openId: "string"
 				}).then((res) => {
-					console.log(res);
-					if (res.code == 200) {
+					if (res.status == 200) {
 						uni.showToast({
 							title: "注册成功",
 							icon: 'success',
@@ -97,6 +102,10 @@
 			// 输入用户名
 			inputUserName(event) {
 				this.username = event.detail.value
+			},
+
+			inputAccount(event) {
+				this.account = event.detail.value
 			},
 
 			// 输入密码

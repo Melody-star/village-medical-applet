@@ -52,8 +52,7 @@
 			this.hospitalId = option.id
 
 			getDepartmentsById(this.hospitalId).then((res) => {
-				console.log(res);
-				const result = this.transformJson(res);
+				const result = this.transformJson(res.data);
 				this.list = result
 			})
 		},
@@ -62,12 +61,11 @@
 				this.mainActiveIndex = e.detail.index
 			},
 			clickItem(e) {
-				console.log(e);
 				this.itemValue = e.detail.text
 				const id = e.detail.id
 
 				counter.registerInfo['department'] = e.detail.text
-				counter.registerInfo['departmentPlace'] = "医技楼三楼"
+				counter.registerInfo['departmentPlace'] = e.detail.location
 
 				uni.navigateTo({
 					url: '/page_register/doctor/doctor?id=' + id
@@ -76,15 +74,15 @@
 			transformJson(data) {
 				const result = [];
 				for (const item of data) {
-					const department = item.department;
 					const departmentDict = {
-						text: department.departmentName,
+						text: item.department_name,
 						children: []
 					};
-					for (const secondDepartment of item.secondDepartmentList) {
+					for (const secondDepartment of item.secondaryDepartments) {
 						departmentDict.children.push({
-							text: secondDepartment.seconddepartmentName,
-							id: secondDepartment.id
+							text: secondDepartment.department_name,
+							id: secondDepartment.secondary_department_id,
+							location: secondDepartment.department_location
 						});
 					}
 					result.push(departmentDict);

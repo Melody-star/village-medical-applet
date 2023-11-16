@@ -140,17 +140,17 @@
 			</view>
 			<view class="box8_down">
 				<view v-for="(item,i) in hospitalList" :key="i">
-					<image :src="item.contactsPhone" mode=""></image>
+					<image :src="item.hospital_image" mode=""></image>
 					<view class="box8_right">
 						<view>
 							<text class="box8_right_name" @click="read($event)"
-								:data-val="item.hospitalName">{{item.hospitalName}}</text>
+								:data-val="item.hospital_name">{{item.hospital_name}}</text>
 							<text class="box8_right_jieshao" @click="read($event)"
-								:data-val="item.contactsName">{{item.contactsName}}</text>
+								:data-val="item.hospital_address">{{item.hospital_address}}</text>
 						</view>
 						<view>
 							<text class="box8_right_place" @click="read($event)"
-								:data-val="item.signKey">{{item.signKey}}</text>
+								:data-val="item.hospital_level">{{item.hospital_level}}</text>
 						</view>
 					</view>
 				</view>
@@ -161,7 +161,7 @@
 			<text class="box9_title">最新资讯</text>
 			<view class="box9_list">
 				<view @click='toDetail(item,true)' v-for="(item,i) in news" :key="i">
-					<news :title="item.scienceTitile" :time="item.createTime" :img="item.scienceImg" />
+					<news :title="item.title" :time="item.publish_date" :img="item.images" />
 				</view>
 			</view>
 		</view>
@@ -270,8 +270,9 @@
 			if (selectedCity) {
 				this.city = selectedCity.name
 				counter.city = this.city
-				getHospitalsByCityName(selectedCity.name).then((res) => {
-					console.log(res);
+				getHospitalsByCityName({
+					city: selectedCity.name
+				}).then((res) => {
 					this.hospitalList = res.data
 				})
 			}
@@ -297,11 +298,11 @@
 					title: "登录过期",
 					icon: 'none',
 					success: () => {
-						// setTimeout(function() {
-						// 	uni.redirectTo({
-						// 		url: '/pages/login/login'
-						// 	});
-						// }, 500)
+						setTimeout(function() {
+							uni.redirectTo({
+								url: '/pages/login/login'
+							});
+						}, 500)
 					}
 				})
 			}

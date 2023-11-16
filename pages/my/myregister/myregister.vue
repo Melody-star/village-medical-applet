@@ -5,25 +5,33 @@
 	</view>
 	<view class="box" v-for="(item,i) in list" :key="i">
 		<image class="icon" src="https://s3-us-east-1.ossfiles.com/demoas/%E5%88%86%E7%BB%84%204.png"></image>
-		<view class="doctor">{{userName}}</view>
+		<!-- <view class="doctor">{{userName}}</view> -->
 		<view class="department">
 			<!-- <image src="https://s3-us-east-1.ossfiles.com/demoas/%E9%83%A8%E9%97%A8.png"></image> -->
-			<text>医院：{{item.hospitalName}}</text>
+			<text>医院：{{item.hospital.hospital_name}}</text>
 		</view>
 		<view class="time">
 			<!-- <image src="https://s3-us-east-1.ossfiles.com/demoas/%E6%97%B6%E9%97%B4%E6%88%B3.png"></image> -->
-			<text>科室：{{item.departmentPosition}}</text>
+			<text>医生：{{item.doctor.username}}</text>
 		</view>
 		<view class="time">
 			<!-- <image src="https://s3-us-east-1.ossfiles.com/demoas/%E6%97%B6%E9%97%B4%E6%88%B3.png"></image> -->
-			<text>时间：{{item.visitTime}}</text>
+			<text>科室：{{item.secondaryDepartment.department_name}}</text>
+		</view>
+		<view class="time">
+			<!-- <image src="https://s3-us-east-1.ossfiles.com/demoas/%E6%97%B6%E9%97%B4%E6%88%B3.png"></image> -->
+			<text>时间：{{item.appointment_time}}</text>
+		</view>
+		<view class="time">
+			<!-- <image src="https://s3-us-east-1.ossfiles.com/demoas/%E6%97%B6%E9%97%B4%E6%88%B3.png"></image> -->
+			<text>挂号费：{{item.registration_fee}}元</text>
 		</view>
 	</view>
 </template>
 
 <script>
 	import {
-		getGuahao
+		getAppointmentByUserId,
 	} from "@/api/api.js"
 
 	import sizeUtil from '@/utils/sizeUtil.js'
@@ -32,17 +40,7 @@
 		extends: sizeUtil,
 		data() {
 			return {
-				list: [{
-						doctor: "张三",
-						department: "内科",
-						time: "2022-11-11 13:00"
-					},
-					{
-						doctor: "张三",
-						department: "内科",
-						time: "2022-11-11 13:00"
-					}
-				],
+				list: [],
 				userName: ""
 			}
 		},
@@ -52,9 +50,10 @@
 			uni.getStorage({
 				key: 'userinfo',
 				success(userinfo) {
-					that.userName = userinfo.data.patientName
-
-					getGuahao(userinfo.data.accountId).then((res) => {
+					that.userName = userinfo.data.username
+					getAppointmentByUserId({
+						id: userinfo.data.user_id
+					}).then((res) => {
 						that.list = res.data
 					})
 				}

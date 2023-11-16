@@ -95,15 +95,15 @@
 				this.goEasy.connect({
 
 					// 用户id
-					id: that.userInfo.accountId,
+					id: that.userInfo.user_id,
 
 					// 用户信息
 					data: {
-						name: that.userInfo.patientName,
-						avatar: that.userInfo.patientAvatar
+						name: that.userInfo.username,
+						avatar: that.userInfo.avatar
 					},
 					onSuccess: () => {
-						console.log('GoEasy connect successfully. 用户Id为：' + that.userInfo.accountId)
+						console.log('GoEasy connect successfully. 用户Id为：' + that.userInfo.user_id)
 					},
 					onFailed: (error) => {
 						console.log('Failed to connect GoEasy, code:' + error.code + ',error:' + error

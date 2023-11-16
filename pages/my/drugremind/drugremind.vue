@@ -53,10 +53,20 @@
 				success(res) {
 					userInfo = res.data
 
-					getDrugremind(userInfo.accountId).then((res) => {
-						that.list = res.data
-						console.log(res);
-					})
+					// getDrugremind(userInfo.accountId).then((res) => {
+					// 	that.list = res.data
+					// 	console.log(res);
+					// })
+					that.list = [{
+						reminderMedicine: "阿莫西林",
+						reminderDate: "17:00"
+					}, {
+						reminderMedicine: "布洛芬",
+						reminderDate: "18:00"
+					}, {
+						reminderMedicine: "999感冒灵颗粒",
+						reminderDate: "18:00"
+					}]
 				}
 			})
 		},

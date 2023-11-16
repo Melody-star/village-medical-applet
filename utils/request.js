@@ -1,12 +1,16 @@
 import operate from '../common/operate.js'
 
-import {
-	useCounterStore
-} from '../stores/counter.js'
-const counter = useCounterStore();
-
 export default class Request {
 	http(param) {
+		// 获取token
+		// let token = ""
+		// uni.getStorageSync({
+		// 	key: 'token',
+		// 	success(res) {
+		// 		token = res.data
+		// 		console.log(token);
+		// 	}
+		// })
 
 		// 请求参数
 		var url = param.url,
@@ -34,7 +38,7 @@ export default class Request {
 				data: data,
 				method: method,
 				header: {
-					'token': counter.token
+					'Authorization': uni.getStorageSync('token')
 				},
 				success: (res) => {
 
