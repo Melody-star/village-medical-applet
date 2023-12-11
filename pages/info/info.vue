@@ -13,7 +13,7 @@
 				<image :src="item.data.avatar"></image>
 				<view style="display: flex;flex-direction: column;margin-top: 17px;margin-left: 20rpx;">
 					<text @click="read($event)" :data-val="item.data.name"
-						style="font-size: 28rem;">{{item.data.name}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.data.zhichen}}</text>
+						style="font-size: 28rem;">{{item.data.name}}</text>
 					<text @click="read($event)" :data-val="item.lastMessage.payload.text"
 						v-if="item.lastMessage.payload.text"
 						style="font-size: 24rem;color: rgba(128, 128, 128, 1);margin-top: 3px;">{{item.lastMessage.payload.text}}</text>
@@ -90,7 +90,7 @@
 			},
 			connectGoEasy() {
 				let that = this
-				uni.showLoading();
+				// uni.showLoading();
 
 				this.goEasy.connect({
 

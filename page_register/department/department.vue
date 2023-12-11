@@ -8,7 +8,7 @@
 			<view style="margin-left: 29rpx;">
 				<text style="font-size: 28rem;">{{hospitalName}}</text>
 				<view style="margin-top: 3px;">
-					<image style="width: 77rpx;height: 26rpx;margin-left: 9rpx;" src="../../static/zonghe.png"></image>
+					<!-- <image style="width: 77rpx;height: 26rpx;margin-left: 9rpx;" src="../../static/zonghe.png"></image> -->
 				</view>
 			</view>
 		</view>

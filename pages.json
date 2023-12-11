@@ -189,8 +189,9 @@
 		}, {
 			"path": "2dmap/2dmap",
 			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
+				"navigationBarTitleText": "院内导航",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#fff"
 			}
 
 		}]

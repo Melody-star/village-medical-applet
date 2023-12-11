@@ -36,10 +36,10 @@
 		</view>
 
 		<view class="footer">
-			<view @click="goTo('/pages/my/chageUserInfo/chageUserInfo')">
+			<!-- 			<view @click="goTo('/pages/my/chageUserInfo/chageUserInfo')">
 				<image src="../../static/xiugia.png"></image>
 				<text>修改信息</text>
-			</view>
+			</view> -->
 			<view @click="show = true">
 				<image src="https://s3-us-east-1.ossfiles.com/demoas/ziti.png"></image>
 				<text>字体大小设置</text>

@@ -26,6 +26,8 @@
 		addPrescription
 	} from "@/api/api.js"
 
+	import api from "@/common/operate.js"
+
 	import sizeUtil from '@/utils/sizeUtil.js'
 
 	export default {
@@ -119,12 +121,9 @@
 					canvasId: 'myCanvas',
 					success: function(res) {
 						uni.uploadFile({
-							url: 'https://medical.sjrksxx.top/sms/system/scwj',
+							url: api.api + '/multer/upload',
 							filePath: res.tempFilePath,
 							name: 'file',
-							header: {
-								"Content-Type": "multipart/form-data"
-							},
 							success: (uploadFileRes) => {
 								that.url = JSON.parse(uploadFileRes.data).data.url
 
@@ -136,6 +135,9 @@
 								})
 
 								that.back()
+							},
+							fail: (err) => {
+								console.log(err);
 							}
 						});
 					}

@@ -174,17 +174,62 @@ export const getAppointmentByUserId = function(data) {
 	})
 }
 
-export const addPrescription = function(data) {
+// 添加用药提醒
+export const addMedicationReminder = function(data) {
 	return request({
-		url: "/sms/sysPatient/addPrescription",
+		url: "/medication-reminder",
 		method: "POST",
 		data: data
 	})
 }
 
-export const getPrescription = function(data) {
+// 根据用户Id获取所有服药提醒
+export const getMedicationReminderByUserId = function(data) {
 	return request({
-		url: "/sms/sysPatient/selectPrescription/" + data,
-		method: "GET"
+		url: "/medication-reminder/getMedicationReminderByUserId/" + data,
+		method: "GET",
+	})
+}
+
+// 根据Id删除服药提醒
+export const deleteMedicationReminder = function(data) {
+	return request({
+		url: "/medication-reminder/" + data,
+		method: "DELETE",
+	})
+}
+
+// 添加健康档案
+export const addHealthRecord = function(data) {
+	return request({
+		url: "/health-record",
+		method: "POST",
+		data: data
+	})
+}
+
+// 根据用户ID查询健康档案
+export const getHealthRecordByUserId = function(data) {
+	return request({
+		url: "/health-record/getHealthRecordByUserId/" + data,
+		method: "GET",
+	})
+}
+
+// 添加处方信息
+export const addPrescription = function(data) {
+	return request({
+		url: "/prescription",
+		method: "POST",
+		data: data
+	})
+}
+
+// 根据用户ID获取处方信息
+export const getPrescriptionByUserId = function(data) {
+	return request({
+		url: "/prescription/getPrescriptionByUserId",
+		method: "GET",
+		data: data
 	})
 }

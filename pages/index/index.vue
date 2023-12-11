@@ -244,10 +244,8 @@
 					url: '/pages/news/detail?item=' + encodeURIComponent(JSON.stringify(item))
 				})
 
-				console.log(value);
-
 				if (value && counter.voice === true) {
-					textToSpeech(item.scienceTitile);
+					textToSpeech(item.title);
 				}
 			},
 			to() {
@@ -291,7 +289,13 @@
 				})
 
 				getAllScience().then((res) => {
-					this.news = (res.data).slice(0, 3)
+					if (res.data == 'Token验证失败') {
+						uni.redirectTo({
+							url: '/pages/login/login'
+						})
+					} else {
+						this.news = (res.data).slice(0, 3)
+					}
 				})
 			} else {
 				uni.showToast({

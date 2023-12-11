@@ -23,7 +23,7 @@
 
 <script>
 	import {
-		addDrugremind
+		addMedicationReminder
 	} from '@/api/api.js'
 
 	import sizeUtil from '../../../utils/sizeUtil'
@@ -62,41 +62,33 @@
 				}
 				let info = uni.getStorageSync('userinfo')
 
-				addDrugremind({
-					accountId: info.accountId,
-					reminderDate: this.time,
-					reminderDose: this.dose,
-					reminderMedicine: this.name,
-					reminderSuggestion: this.notes
+				addMedicationReminder({
+					userId: info.user_id,
+					drugName: this.name,
+					reminderTime: this.time,
+					status: 1,
+					dose: this.dose
 				}).then((res) => {
-					uni.requestSubscribeMessage({
-						tmplIds: ['GPeHLiXQrUMiY9EpZReIMtuFttGyMF5PClEPG-uC9ws'],
-						success(res) {
-							uni.showToast({
-								title: "添加成功",
-								icon: 'success',
-								success: () => {
+					if (res.status == 200) {
+						uni.showToast({
+							title: "添加成功",
+							icon: 'success',
+						})
 
-									// 启动定时器
-									// startCron({
-									// 	accountId: info.accountId,
-									// 	reminderDate: that.time,
-									// 	reminderDose: that.dose,
-									// 	reminderMedicine: that.name,
-									// 	reminderSuggestion: that.notes
-									// }).then((res) => {
-									// 	console.log(res);
-									// })
-
-									setTimeout(function() {
-										uni.redirectTo({
-											url: '/pages/my/drugremind/drugremind'
-										})
-									}, 500)
-								}
-							})
-						}
-					})
+						uni.requestSubscribeMessage({
+							tmplIds: ['GPeHLiXQrUMiY9EpZReIMtuFttGyMF5PClEPG-uC9ws'],
+							success(res) {
+								uni.redirectTo({
+									url: '/pages/my/drugremind/drugremind'
+								})
+							}
+						})
+					} else {
+						uni.showToast({
+							title: "添加失败",
+							icon: 'fail',
+						})
+					}
 				})
 			},
 			inputName(e) {

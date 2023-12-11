@@ -6,7 +6,7 @@
 
 	<view v-if="list.length != 0" class="box" v-for="(item,i) in list" :key="i">
 		<view>
-			<text class="name">{{item.reminderMedicine}}</text>
+			<text class="name">{{item.drug_name}}</text>
 		</view>
 		<view style="margin-top: 10px;">
 			<text>提醒日期：每天</text>
@@ -15,9 +15,9 @@
 		<view class="box2">
 			<view>
 				<view>用药时间：</view>
-				<view class="time">{{item.reminderDate}}</view>
+				<view class="time">{{item.reminder_time}}</view>
 			</view>
-			<view style="color: red;" @click="delete">删除</view>
+			<view style="color: red;" @click="delete1(item.reminder_id)">删除</view>
 		</view>
 	</view>
 
@@ -33,7 +33,8 @@
 	import sizeUtil from '../../../utils/sizeUtil'
 
 	import {
-		getDrugremind
+		getMedicationReminderByUserId,
+		deleteMedicationReminder
 	} from "@/api/api.js"
 
 	export default {
@@ -45,32 +46,15 @@
 			}
 		},
 		onLoad() {
-			const that = this
-
-			let userInfo = null
-			uni.getStorage({
-				key: 'userinfo',
-				success(res) {
-					userInfo = res.data
-
-					// getDrugremind(userInfo.accountId).then((res) => {
-					// 	that.list = res.data
-					// 	console.log(res);
-					// })
-					that.list = [{
-						reminderMedicine: "阿莫西林",
-						reminderDate: "17:00"
-					}, {
-						reminderMedicine: "布洛芬",
-						reminderDate: "18:00"
-					}, {
-						reminderMedicine: "999感冒灵颗粒",
-						reminderDate: "18:00"
-					}]
-				}
-			})
+			this.initData()
 		},
 		methods: {
+			initData() {
+				let info = uni.getStorageSync('userinfo')
+				getMedicationReminderByUserId(info.user_id).then((res) => {
+					this.list = res.data
+				})
+			},
 			onClickLeft() {
 				wx.showToast({
 					title: '点击返回',
@@ -86,8 +70,21 @@
 				this.checked = !this.checked
 				console.log(e);
 			},
-			delete() {
-
+			delete1(id) {
+				deleteMedicationReminder(id).then((res) => {
+					if (res.status == 200) {
+						uni.showToast({
+							title: "删除成功",
+							icon: "success"
+						})
+						this.initData()
+					} else {
+						uni.showToast({
+							title: "删除失败",
+							icon: "fail"
+						})
+					}
+				})
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <template>
 	<page-meta :root-font-size="getRootFontSize()"></page-meta>
 	<view class="header">
-		<title name="修改信息" color="#fff"></title>
+		<title name="添加信息" color="#fff"></title>
 	</view>
 	<view>
 		<van-cell-group>
@@ -19,6 +19,10 @@
 
 <script>
 	import sizeUtil from '@/utils/sizeUtil.js'
+
+	import {
+		addHealthRecord
+	} from "@/api/api.js"
 
 	export default {
 		extends: sizeUtil,
@@ -58,9 +62,39 @@
 				}
 			},
 			affirm() {
-				uni.navigateTo({
-					url: "/pages/index/record/record?name=" + this.name + '&sex=' + this.sex + '&age=' + this.age +
-						'&result=' + this.result + '&usage=' + this.usage + '&doctor=' + this.doctor
+				// uni.navigateTo({
+				// 	url: "/pages/index/record/record?name=" + this.name + '&sex=' + this.sex + '&age=' + this.age +
+				// 		'&result=' + this.result + '&usage=' + this.usage + '&doctor=' + this.doctor
+				// })
+
+				const userInfo = uni.getStorageSync('userinfo')
+				addHealthRecord({
+					userId: userInfo.user_id,
+					// 过往病史
+					pastMedicalHistory: this.name,
+					// 家庭病史
+					familyMedicalHistory: this.sex,
+					// 过敏史
+					allergyHistory: this.age,
+					// 肝功能
+					liverFunction: this.result,
+					// 肾功能
+					kidneyFunction: this.usage,
+					// 特殊人群
+					specialPopulation: this.doctor
+				}).then((res) => {
+					if (res.status == 200) {
+						uni.showToast({
+							title: "添加成功",
+							icon: "success",
+							success() {
+								uni.navigateTo({
+									url: '/pages/index/record/record'
+								})
+							}
+						})
+
+					}
 				})
 			}
 		}

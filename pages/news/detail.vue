@@ -3,24 +3,24 @@
 
 	<title name="科普文章"></title>
 
-	<view class="title">{{info.scienceTitile}}</view>
+	<view class="title">{{info.title}}</view>
 
-	<view v-if="info.scienceType == '1'">
+	<view v-if="info.type == '1'">
 		<view class="time">
-			<text>乡村e疗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{info.createTime}}</text>
-			<image src="https://s3-us-east-1.ossfiles.com/demoas/%E5%96%87%E5%8F%AD.png" @click="play()"></image>
+			<text>{{ info.author }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{info.publish_date}}</text>
+			<!-- <image src="https://s3-us-east-1.ossfiles.com/demoas/%E5%96%87%E5%8F%AD.png" @click="play()"></image> -->
 		</view>
-		<video id="myVideo" :src="info.scienceInfo"></video>
+		<video id="myVideo" :src="info.video_link"></video>
 	</view>
 
 	<view v-else>
 		<view class="time">
-			<text>乡村e疗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{info.createTime}}</text>
+			<text>{{ info.author }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{info.publish_date}}</text>
 			<image src="https://s3-us-east-1.ossfiles.com/demoas/%E5%96%87%E5%8F%AD.png" @click="play()"></image>
 		</view>
 		<!-- <view class="content">{{info.scienceInfo}}</view> -->
 		<view class="content">
-			<rich-text :nodes="info.scienceInfo"></rich-text>
+			<rich-text :nodes="info.content"></rich-text>
 		</view>
 	</view>
 </template>

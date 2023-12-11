@@ -10,12 +10,12 @@
 	<view class="box2">
 		<view>
 			<text>用户名</text>
-			<input @input="inputUserName" value="张涛" placeholder="请输入您的用户名" />
+			<input @input="inputUserName" value="" placeholder="请输入您的用户名" />
 			<!-- <input @input="inputUserName" placeholder="请输入您的用户名" /> -->
 		</view>
 		<view>
 			<text>密码</text>
-			<input type="password" value="123456" @input="inputPassWord" placeholder="请输入您的密码" />
+			<input type="password" value="" @input="inputPassWord" placeholder="请输入您的密码" />
 			<!-- <input type="password" @input="inputPassWord" placeholder="请输入您的密码" /> -->
 		</view>
 		<view style="margin-left: 40rpx;">
@@ -56,8 +56,8 @@
 		extends: sizeUtil,
 		data() {
 			return {
-				username: "123",
-				password: "123",
+				username: "",
+				password: "",
 				// username: "",
 				// password: "",
 				radio: 2, //1医生，2患者

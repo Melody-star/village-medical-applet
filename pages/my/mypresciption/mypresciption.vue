@@ -4,13 +4,13 @@
 		<title name="我的处方" color="#fff"></title>
 	</view>
 	<view style="width: 100%;display: flex;flex-direction: column;align-items: center;">
-		<image class="img" mode="scaleToFill" v-for="(item,i) in data" :key="i" :src="item.userPrescription"></image>
+		<image class="img" mode="scaleToFill" v-for="(item,i) in data" :key="i" :src="item.prescription_link"></image>
 	</view>
 </template>
 
 <script>
 	import {
-		getPrescription
+		getPrescriptionByUserId
 	} from "@/api/api.js"
 
 	import sizeUtil from '@/utils/sizeUtil.js'
@@ -27,8 +27,11 @@
 			uni.getStorage({
 				key: 'userinfo',
 				success: function(res) {
-					getPrescription(res.data.accountId).then((value) => {
+					getPrescriptionByUserId({
+						id: res.data.user_id
+					}).then((value) => {
 						that.data = value.data
+						console.log(that.data);
 					})
 				}
 			})

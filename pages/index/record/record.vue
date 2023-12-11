@@ -5,10 +5,10 @@
 
 		<view class="hander_info">
 			<view>
-				<image :src="userinfo.patientAvatar" class="avg"></image>
+				<image :src="userInfo.avatar" class="avg"></image>
 			</view>
 			<view class="hander_info_right">
-				<text>{{userinfo.patientName}}</text>
+				<text>{{userInfo.username}}</text>
 				<text>未知</text>
 			</view>
 		</view>
@@ -22,27 +22,27 @@
 				<view class="base_content">
 					<view class="base_content_box">
 						<view class="base_content_title">过往病史：</view>
-						<view class="base_content_value">{{guowang}}</view>
+						<view class="base_content_value">{{record.pastMedicalHistory}}</view>
 					</view>
 					<view class="base_content_box">
 						<view class="base_content_title">家族病史：</view>
-						<view class="base_content_value">{{bingshi}}</view>
+						<view class="base_content_value">{{record.familyMedicalHistory}}</view>
 					</view>
 					<view class="base_content_box">
 						<view class="base_content_title">过敏史：</view>
-						<view class="base_content_value">{{guomin}}</view>
+						<view class="base_content_value">{{record.allergyHistory}}</view>
 					</view>
 					<view class="base_content_box">
 						<view class="base_content_title">肝功能：</view>
-						<view class="base_content_value">{{gan}}</view>
+						<view class="base_content_value">{{record.liverFunction}}</view>
 					</view>
 					<view class="base_content_box">
 						<view class="base_content_title">肾功能：</view>
-						<view class="base_content_value">{{sheng}}</view>
+						<view class="base_content_value">{{record.kidneyFunction}}</view>
 					</view>
 					<view class="base_content_box">
 						<view class="base_content_title">特殊人群：</view>
-						<view class="base_content_value">{{teshu}}</view>
+						<view class="base_content_value">{{record.specialPopulation}}</view>
 					</view>
 				</view>
 			</view>
@@ -119,17 +119,25 @@
 						<view class="btn_jilu">记录</view>
 					</view>
 				</view>
-
 			</view>
 			<view>
-
 			</view>
 		</view>
+
+		<uni-popup ref="alertDialog" type="dialog">
+			<uni-popup-dialog :type="msgType" cancelText="返回" confirmText="确定" title="提示" content="您还未添加健康信息是否现在去添加？"
+				@confirm="dialogConfirm" @close="dialogClose"></uni-popup-dialog>
+		</uni-popup>
+
 	</view>
 </template>
 
 <script>
 	import sizeUtil from '@/utils/sizeUtil.js'
+
+	import {
+		getHealthRecordByUserId
+	} from "@/api/api.js"
 
 	export default {
 		extends: sizeUtil,
@@ -145,7 +153,10 @@
 				ceng: 3,
 
 				userinfo: {},
-				show: 1
+				show: 1,
+
+				userInfo: {},
+				record: {}
 				// data: [{
 				// 	title: "身高体重"
 
@@ -154,26 +165,31 @@
 				// }]
 			}
 		},
-		onLoad(option) {
-			console.log(option);
-
-			this.guowang = option.name
-			this.bingshi = option.sex
-			this.guomin = option.age
-			this.gan = option.result
-			this.sheng = option.usage
-			this.teshu = option.doctor
-
-			try {
-				const userinfo = uni.getStorageSync('userinfo');
-				if (userinfo) {
-					this.userinfo = userinfo
-				}
-			} catch (e) {
-				// error
-			}
+		onLoad() {
+			const userInfo = uni.getStorageSync('userinfo')
+			this.userInfo = userInfo
+			this.initData()
 		},
 		methods: {
+			initData() {
+				getHealthRecordByUserId(this.userInfo.user_id).then((res) => {
+					if (res.data == null) {
+						this.$refs.alertDialog.open()
+					} else {
+						this.record = res.data
+					}
+				})
+			},
+			dialogConfirm() {
+				uni.navigateTo({
+					url: '/pages/index/recordDetail/recordDetail'
+				})
+			},
+			dialogClose() {
+				uni.navigateBack({
+					delta: 1
+				});
+			},
 			change(item) {
 				this.show = item
 			},
