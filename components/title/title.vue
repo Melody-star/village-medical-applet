@@ -1,15 +1,11 @@
 <template>
 	<view :style='"padding-top:" + top + "px;color:" + color + ";"' class="box12">
-		<image @click="back()" v-if="color ==='#fff'" class="img"
-			src="https://s3-us-east-1.ossfiles.com/demoas/%E7%AE%AD%E5%A4%B4%20%E5%8F%B3.png">
-		</image>
-		<image @click="back()" v-else class="img"
-			src="https://s3-us-east-1.ossfiles.com/demoas/%E7%AE%AD%E5%A4%B4%20%E5%8F%B3%20%282%29.png">
-		</image>
+		<image v-if="color == '#fff'" @click="back()" class="img" src="@/static/back.svg" />
+		<image v-else @click="back()" class="img" src="@/static/back2.svg" />
 		<view class="title">{{name}}</view>
 	</view>
 </template>
-
+<!--  -->
 <script>
 	import {
 		destroyAudio
@@ -52,7 +48,6 @@
 	.title {
 		font-size: 30rem;
 		font-family: 'PingFang Bold';
-		// margin-left: 260rpx;
 	}
 
 	.box12 {
@@ -67,5 +62,9 @@
 		height: 16px;
 		position: absolute;
 		left: 26rpx;
+	}
+
+	.img path {
+		fill: aqua;
 	}
 </style>
